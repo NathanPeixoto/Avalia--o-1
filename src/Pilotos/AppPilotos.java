@@ -8,7 +8,7 @@ import Pessoas.Pessoa;
 
 public class AppPilotos {
     public static void main(String[] args) throws InterruptedException, IOException {
-        int MAX_ELEMENTOS = 20;
+        int MAX_ELEMENTOS = 5;
         int opcao, qtdCadastrados = 0;
         String busca,cpf = "";
         Pessoa[] pilotos = new Pessoa[MAX_ELEMENTOS];
