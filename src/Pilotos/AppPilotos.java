@@ -8,7 +8,7 @@ import Pessoas.Pessoa;
 
 public class AppPilotos {
     public static void main(String[] args) throws InterruptedException, IOException {
-        int MAX_ELEMENTOS = 5;
+        int MAX_ELEMENTOS = 50;
         int opcao, qtdCadastrados = 0;
         String busca,cpf = "";
         Pessoa[] pilotos = new Pessoa[MAX_ELEMENTOS];
@@ -31,6 +31,7 @@ public class AppPilotos {
                 // Se não tem mais espaço no vetor, caio fora
                 if (qtdCadastrados >= MAX_ELEMENTOS) {
                     System.out.println("\nNão há espaço para cadastrar novos pilotos.");
+                    in.nextLine();
                     voltarMenu(in);
                     continue;
                 }else{
@@ -77,7 +78,7 @@ public class AppPilotos {
                     System.out.println("Lista de pilotos:\n");
                     for(int i =0; i < pilotos.length; i++){
                         if(pilotos[i] != null){
-                            System.out.println("\n\n\n\n\n\n\nPiloto(a): " + pilotos[i].getNome() + "\nCPF: " + pilotos[i].getCPF());
+                            System.out.println("\nPiloto(a): " + pilotos[i].getNome() + "\nCPF: " + pilotos[i].getCPF());
                         }
                     }
                 }
@@ -122,7 +123,24 @@ public class AppPilotos {
 
                 System.out.println("\n\n\n\n\n\n\n\nDeseja quanto slots?");
 
-                MAX_ELEMENTOS = in.nextInt();
+                int quantidade = in.nextInt();
+
+                if(quantidade > MAX_ELEMENTOS){
+
+                    Pessoa[] pilotos2 = new Pessoa[quantidade];
+                    for(int i = 0; i< pilotos.length;i++){
+                        if(pilotos[i] != null){
+                            pilotos2[i] = pilotos[i];
+                        }
+                    }
+                    MAX_ELEMENTOS = quantidade;
+
+                    pilotos = pilotos2;
+            }else{
+                System.out.println("A quantidade especificada é menor do que a quantidade anterior, sendo impossivel a substituição de slots sem perca de dados!");
+                in.nextLine();
+                voltarMenu(in);
+            }
                 
             }
             else if (opcao != 0) {
